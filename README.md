@@ -1,9 +1,10 @@
 # Lorenz Attractor in Pygame
 
-$ x˙ = σ(y − x)
-y˙ = rx − y − xz 
-z˙ = xy − bz
-
+\begin{align}
+\dot{x} & = \sigma(y-x) \\
+\dot{y} & = \rho x - y - xz \\
+\dot{z} & = -\beta z + xy
+\end{align}
 
 
 ![Drawing](./attractor1.png)      ![Drawing](./attractor2.png)
