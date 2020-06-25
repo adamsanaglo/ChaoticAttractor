@@ -3,9 +3,9 @@
 A visualization of the ordinary differential equations which make up the Lorenz system
 
 
-*x˙ = σ(y − x)*                                            ![Drawing](./attractor1.png)      
+*x˙ = σ(y − x)*                                              
                                                            
-*y˙ = rx − y − xz*                                          ![Drawing](./attractor2.png)
+*y˙ = rx − y − xz*    
 
 *z˙ = xy − bz*
 
