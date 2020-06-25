@@ -1,7 +1,9 @@
 # Lorenz Attractor in Pygame
 
 *x˙ = σ(y − x)*
+
 *y˙ = rx − y − xz*
+
 *z˙ = xy − bz*
 
 
