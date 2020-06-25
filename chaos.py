@@ -33,24 +33,58 @@ class Attractor:
         new_y = height * ((y - yMin) / (yMax - yMin))
         return round(new_x), round(new_y)
 
-class Application:
-    def __init__(self):
-        self.isRunning = True
-        self.generate = None
-        self.fps_timer = None
-        self.attractors = {}
-        self.size = self.width, self.height = 1920, 1080
-        self.count = 0
-        self.output_count = 1
 
-    def on_init(self):
-        pygame.init()
-        pygame.display.set_caption("Butterfly Effect")
-        self.generate = pygame.display.set_mode(self.size)
-        self.isRunning = True
-        self.fps_timer = pygame.time.Clock()
+    class Application:
+        def __init__(self):
+            self.isRunning = True
+            self.generate = None
+            self.fps_timer = None
+            self.attractors = {}
+            self.size = self.width, self.height = 1920, 1080
+            self.count = 0
+            self.output_count = 1
 
-        self.attractors = Attractor()
+        def on_init(self):
+            pygame.init()
+            pygame.display.set_caption("Butterfly Effect")
+            self.generate = pygame.display.set_mode(self.size)
+            self.isRunning = True
+            self.fps_timer = pygame.time.Clock()
+
+            self.attractors = Attractor()
+
+        def on_event(self, event):
+            if event.type == pygame.QUIT:
+                self.isRunning = False
+
+        def on_loop(self):
+            self.attractors.step()
+
+        def on_render(self):
+            pattern = self.attractors.draw(self.generate)
+            pygame.display.update(pattern)
+
+        def on_execute(self):
+            if self.on_init() == False:
+                self.isRunning = False
+
+            while self.isRunning:
+                for event in pygame.event.get():
+                    self.on_event()
+
+                self.on_loop()
+                self.on_render()
+
+                self.fps_timer()
+                self.count += 1
+
+            pygame.quit()
+
+    if __name__ == '__main__':
+         app = Application()
+         app.on_execute()
+
+
 
 
 
