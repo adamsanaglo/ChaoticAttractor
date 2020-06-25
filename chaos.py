@@ -11,7 +11,7 @@ class Attractor:
         self.zMin, self.zMax = 100, 100
         self.x, self.y, self.z = 0.001, 0.001, 0.001
         self.oX, self.oY, self.oZ = self.x, self.y, self.z
-        self.dt = 0.01
+        self.dt = 0.001
         self.a, self.b, self.c = 10, 30, 3
 
 
