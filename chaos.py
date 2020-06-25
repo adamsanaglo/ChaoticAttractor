@@ -2,45 +2,18 @@ import pygame
 import random
 from random import randint
 
-
-col1 = randint(1, 255)
-col2 = randint(1, 255)
-col3 = randint(1, 255)
-col4 = randint(1, 255)
-col5 = randint(1, 255)
-col6 = randint(1, 255)
-col7 = randint(1, 255)
-col8 = randint(1, 255)
-col9 = randint(1, 255)
-
-'''
-def color_gen():
-
-    col1 = randint(1, 255)
-    col2 = randint(1, 255)
-    col3 = randint(1, 255)
-    col4 = randint(1, 255)
-    col5 = randint(1, 255)
-    col6 = randint(1, 255)
-    col7 = randint(1, 255)
-    col8 = randint(1, 255)
-    col9 = randint(1, 255)
-
-    return col1, col2, col3, col4, col5, col6, col7, col8, col9
-'''
-
 # Model of the Classic Lorenz Equations
 
 class Attractor:
     def __init__(self):
-        self.xMin, self.xMax = -40, 60
-        self.yMin, self.yMax = -40, 60
-        self.zMin, self.zMax = 0, 30
-        self.x, self.y, self.z = 0.1, 0.0, 0.0
+        self.xMin, self.xMax = -50, 50
+        self.yMin, self.yMax = -50, 50
+        self.zMin, self.zMax = 100, 100
+        self.x, self.y, self.z = 0.001, 0.001, 0.001
         self.oX, self.oY, self.oZ = self.x, self.y, self.z
-        self.dt = 0.0001
-        self.a, self.b, self.c = 10, 28, 8/3
-        self.pixelColour = (255, 0, 0)
+        self.dt = 0.01
+        self.a, self.b, self.c = 10, 30, 3
+
 
     def step(self):
         self.oX, self.oY, self.oZ = self.x, self.y, self.z
@@ -59,7 +32,7 @@ class Attractor:
         p1 = self.generate(self.oX, self.oY, self.xMin, self.xMax, self.yMin, self.yMax, width, height)
         p2 = self.generate(self.x, self.y, self.xMin, self.xMax, self.yMin, self.yMax, width, height)
 
-        pattern = pygame.draw.line(display, self.pixelColour, p1, p2, 2)
+        pattern = pygame.draw.line(display, self.pixelColour, p1, p2, 1)
 
         return pattern
 
@@ -70,7 +43,7 @@ class Application:
         self.generate = None
         self.fps_timer = None
         self.attractors = []
-        self.size = self.width, self.height = 1300, 600
+        self.size = self.width, self.height = 1700, 800
         self.count = 0
         self.output_count = 1
 
@@ -82,13 +55,13 @@ class Application:
         self.fps_timer = pygame.time.Clock()
 
         colour = []
-        colour.append([col1, col2, col3])
-        colour.append([col4, col5, col6])
-        colour.append([col7, col8, col9])
+        colour.append([randint(1, 255), randint(1, 255), randint(1, 255)])
+        colour.append([randint(1, 255), randint(1, 255), randint(1, 255)])
+        colour.append([randint(1, 255), randint(1, 255), randint(1, 255)])
 
         for i in range(0, 3):
             self.attractors.append(Attractor())
-            self.attractors[i].x = random.uniform(-0.1, 0.1)
+            self.attractors[i].x = random.uniform(-2, 2)
             self.attractors[i].pixelColour = colour[i]
 
     def on_event(self, event):
@@ -124,10 +97,4 @@ class Application:
 if __name__ == '__main__':
     app = Application()
     app.on_execute()
-
-
-
-
-
-
 
