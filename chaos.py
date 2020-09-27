@@ -43,7 +43,7 @@ class Application:
         self.generate = None
         self.fps_timer = None
         self.attractors = []
-        self.size = self.width, self.height = 1700, 800
+        self.size = self.width, self.height = 1000, 500
         self.count = 0
         self.output_count = 1
 
@@ -97,4 +97,3 @@ class Application:
 if __name__ == '__main__':
     app = Application()
     app.on_execute()
-
